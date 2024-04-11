@@ -1,4 +1,5 @@
 ﻿using March2024.Utilities;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -58,23 +59,79 @@ namespace March2024.Pages
         public void VerifyRecordCreated(IWebDriver webDriver)
         {
             IWebElement newCode = webDriver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
-            if (newCode.Text == "ICMarch2024")
+            /*if (newCode.Text == "ICMarch")
             {
-                Console.WriteLine("New Time record has been created successfully");
+                Assert.Pass("New Time record has been created successfully");
             }
             else
             {
-                Console.WriteLine("New Time record has not been created");
-            }
+                Assert.Fail("New Time record has not been created");
+            }*/
+
+            Assert.That(newCode.Text == "ICMarch2024", "New Time record has not been created");
         }
 
         public void EditNewlyCreatedTMRecord(IWebDriver webDriver)
         {
+            //Code for Edit Time Record
+            IWebElement goToLastPageButton = webDriver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
+            goToLastPageButton.Click();
+            Thread.Sleep(3000);
 
+            //Click on Edit Button
+            IWebElement editButton = webDriver.FindElement(By.XPath("//tbody/tr[last()]/td[5]/a[1]"));
+            editButton.Click();
+            Thread.Sleep(3000);
+
+            //Edit Code in Code Textbox
+            IWebElement editCodeTextbox = webDriver.FindElement(By.Id("Code"));
+            editCodeTextbox.Clear();
+            editCodeTextbox.SendKeys("IC2024Edited");
+
+            //Edit Description in Description Textbox
+            IWebElement editDescriptionTextBox = webDriver.FindElement(By.Id("Description"));
+            editDescriptionTextBox.Clear();
+            editDescriptionTextBox.SendKeys("IC2024Edited");
+
+            //Edit Price in Price Textbox
+            WaitUtils.WaitToBeVisible(webDriver, "XPath", "//*[@id='TimeMaterialEditForm']/div/div[4]/div/span[1]/span/input[1]", 3);
+            IWebElement editPriceOverlappingTag = webDriver.FindElement(By.XPath("//*[@id='TimeMaterialEditForm']/div/div[4]/div/span[1]/span/input[1]"));
+            IWebElement editPriceTextBox = webDriver.FindElement(By.Id("Price"));
+            editPriceOverlappingTag.Click();
+            editPriceTextBox.Clear();
+            editPriceOverlappingTag.Click();
+            editPriceTextBox.SendKeys("500");
+
+            //Click on save button
+            IWebElement editSaveButton = webDriver.FindElement(By.Id("SaveButton"));
+            editSaveButton.Click();
+            Thread.Sleep(4000);
+
+            // Clock on goToLastPage Button
+            IWebElement editGoToLastPageButton = webDriver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
+            editGoToLastPageButton.Click();
+
+            IWebElement editedCode = webDriver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
+            IWebElement EditedDescription = webDriver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[3]"));
+            Assert.That((editedCode.Text == "IC2024Edited"), "Time Record has not been updated");
         }
+
         public void DeleteTMRecord(IWebDriver webDriver)
         {
+            //Code for Delete Time Record
+            IWebElement goToLastPageButton = webDriver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
+            goToLastPageButton.Click();
+            Thread.Sleep(3000);
 
+            //Click on delete button
+            IWebElement deleteButton = webDriver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[5]/a[2]"));
+            deleteButton.Click();
+
+            IAlert simpleAlert = webDriver.SwitchTo().Alert();
+            simpleAlert.Accept();
+
+            IWebElement lastCodeInTable = webDriver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
+            Assert.That((lastCodeInTable.Text.Equals("IC2024Edited")), "Time Record has not been deleted");
         }
     }
 }
