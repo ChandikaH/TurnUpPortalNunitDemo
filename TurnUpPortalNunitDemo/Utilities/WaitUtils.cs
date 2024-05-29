@@ -1,8 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using System.Runtime.ConstrainedExecution;
 
-namespace March2024.Utilities
+namespace TurnUpPortalNunitDemo.Utilities
 {
     public class WaitUtils
     {

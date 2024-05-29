@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34701.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "March2024", "March2024.csproj", "{5C71FE10-B604-4B73-A8AC-0A3821E06B4D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TurnUpPortalNunitDemo", "TurnUpPortalNunitDemo.csproj", "{5C71FE10-B604-4B73-A8AC-0A3821E06B4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

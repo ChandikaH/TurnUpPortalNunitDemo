@@ -2,7 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
-namespace March2024.Pages
+namespace TurnUpPortalNunitDemo.Pages
 {
     public class HomePage
     {

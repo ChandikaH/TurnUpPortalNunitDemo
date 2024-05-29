@@ -1,9 +1,9 @@
-﻿using March2024.Pages;
-using March2024.Utilities;
+﻿using TurnUpPortalNunitDemo.Pages;
+using TurnUpPortalNunitDemo.Utilities;
 using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
 
-namespace March2024.Tests
+namespace TurnUpPortalNunitDemo.Tests
 {
     [Parallelizable]
     [TestFixture]
