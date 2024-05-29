@@ -57,23 +57,23 @@ namespace March2024.Utilities
 
         public static void WaitToExist(IWebDriver webDriver, string locatorType, string locatorValue, int seconds)
         {
-            var wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(seconds));
+            WebDriverWait webDriverWait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(seconds));
 
             if (locatorType == XPATH)
             {
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath(locatorValue)));
+                webDriverWait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath(locatorValue)));
             }
             if (locatorType == ID)
             {
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(locatorValue)));
+                webDriverWait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(locatorValue)));
             }
             if (locatorType == CSS_SELECTOR)
             {
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.CssSelector(locatorValue)));
+                webDriverWait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.CssSelector(locatorValue)));
             }
             if (locatorType == NAME)
             {
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Name(locatorValue)));
+                webDriverWait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Name(locatorValue)));
             }
         }
     }
