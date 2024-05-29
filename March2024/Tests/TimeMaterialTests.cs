@@ -1,15 +1,7 @@
 ﻿using March2024.Pages;
+using March2024.Utilities;
 using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using March2024.Utilities;
-using log4net.Config;
-using log4net;
 
 namespace March2024.Tests
 {
@@ -23,17 +15,15 @@ namespace March2024.Tests
         HomePage homePageObj = new HomePage();
         //TM page object initialization and definition
         TimeMaterialPage tmPageObj = new TimeMaterialPage();
-        private static readonly ILog log = LogManager.GetLogger(typeof(TimeMaterialTests));
 
         [SetUp]
         public void SetUpTimeMaterial()
         {
             //Open Chrome Browser
-            XmlConfigurator.Configure(new System.IO.FileInfo("log4net.config"));
             webDriver = new ChromeDriver();
             loginPageObj.LoginActions(webDriver, "hari", "123123");
             homePageObj.VerifyLoggedInUser(webDriver);
-            log.Info("User logged in successfully");
+            Console.WriteLine("User logged in successfully");
             homePageObj.NavigateToTimeMaterialPage(webDriver);
         }
 
