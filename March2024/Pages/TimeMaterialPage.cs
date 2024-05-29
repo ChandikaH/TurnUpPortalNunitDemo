@@ -119,6 +119,7 @@ namespace March2024.Pages
         public void DeleteTMRecord(IWebDriver webDriver)
         {
             //Code for Delete Time Record
+            WaitUtils.WaitToBeVisible(webDriver, "Xpath", "//*[@id=\"tmsGrid\"]/div[4]/a[4]/span", 5);
             IWebElement goToLastPageButton = webDriver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
             goToLastPageButton.Click();
             Thread.Sleep(3000);

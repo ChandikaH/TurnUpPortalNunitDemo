@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using log4net;
+using log4net.Config;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -11,6 +13,7 @@ namespace March2024.Pages
 {
     public class HomePage
     {
+        private static readonly ILog log = LogManager.GetLogger(typeof(HomePage));
         public void NavigateToTimeMaterialPage(IWebDriver webDriver)
         {
             try
@@ -55,6 +58,7 @@ namespace March2024.Pages
             {
                 //Check if user has logged in successfully
                 IWebElement helloHariLink = webDriver.FindElement(By.XPath("//*[@id=\"logoutForm\"]/ul/li/a"));
+                log.Info("User Logged in to TurnUp portal successfully.");
                 Assert.That(helloHariLink.Text == "Hello hari!", "User hasn't been logged in.");
             }
             catch (Exception ex) 
